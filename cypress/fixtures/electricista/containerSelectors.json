@@ -1,0 +1,14 @@
+{
+    "asignada": {
+      "container": "#slide-toggle-assigned"
+    },
+    "enCamino": {
+      "container": "#slide-toggle-in-route"
+    },
+    "enCurso": {
+      "container": "#slide-toggle-in-address"
+    },
+    "dentroDeSitio": {
+      "container": "#slide-toggle-activity-started"
+    }
+  }

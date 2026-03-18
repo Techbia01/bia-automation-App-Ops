@@ -1,0 +1,4 @@
+{
+    "validos": ["Asignada", "En camino","En curso", "Dentro de sitio", "Completando documentos"],
+    "OrdenVisitaFallida": ["Asignada", "En camino","En curso", "Fallida en curso", "Fallida", "Cancelado"]
+}

@@ -1,0 +1,45 @@
+{
+    "noEditableFields": {
+      "Cliente": "",
+      "Frontera": "",
+      "Código Bia": "",
+      "Ciudad": "",
+      "Departamento": ""
+    },
+    "textFields": {
+      "Dirección de frontera": "KR 11 NO 86 60 AP 101",
+      "Código SIC": "111",
+      "Descripción de actividad de la empresa": "Prueba",
+      "Factor de medida": "2"
+    },
+
+    "selectFields": {
+      "Tipología de usuario": "Residencial",
+      "Se informa al usuario acerca de su derecho a solicitar la asesoría o participación de un técnico particular durante la visita.¿El usuario hizo uso de este derecho?": "Si",
+      "Nivel de tensión": "2",
+      "Red de media tensión (kV)": "13.200"
+    },
+    "expectedFields": {
+        "Cliente": "",
+        "Frontera": "",
+        "Código Bia": "",
+        "Ciudad": "",
+        "Departamento": "",
+        "Dirección de frontera": "",
+        "Longitud": "",
+        "Latitud": "",
+        "Altitud (m)": "",
+        "Tipología de usuario": "",
+        "NIC": "",
+        "Código SIC": "",
+        "OR": "",
+        "Comercializador anterior": "",
+        "Descripción de actividad de la empresa": "",
+        "Se informa al usuario acerca de su derecho a solicitar la asesoría o participación de un técnico particular durante la visita.¿El usuario hizo uso de este derecho?": "",
+        "Tipo de medida encontrada": "",
+        "Factor de medida": "",
+        "Nivel de tensión": "",
+        "Red de media tensión (kV)": ""
+    }
+  }
+  

@@ -1,0 +1,37 @@
+{
+    "selectFieldInitial": {
+        "¿Necesita Información del  Transformador?": "Si"
+      },   
+    "textFields": {
+      "Número de transformador": "111",
+      "Capacidad del transformador (kVA) ": "111"
+    },
+
+    "selectFields": {
+      "Sub Estación": "Local",
+      "Tipo de uso": "Exclusivo"
+    },
+    "expectedFields": {
+        "Cliente": "",
+        "Frontera": "",
+        "Código Bia": "",
+        "Ciudad": "",
+        "Departamento": "",
+        "Dirección de frontera": "",
+        "Longitud": "",
+        "Latitud": "",
+        "Altitud (m)": "",
+        "Tipología de usuario": "",
+        "NIC": "",
+        "Código SIC": "",
+        "OR": "",
+        "Comercializador anterior": "",
+        "Descripción de actividad de la empresa": "",
+        "Se informa al usuario acerca de su derecho a solicitar la asesoría o participación de un técnico particular durante la visita.¿El usuario hizo uso de este derecho?": "",
+        "Tipo de medida encontrada": "",
+        "Factor de medida": "",
+        "Nivel de tensión": "",
+        "Red de media tensión (kV)": ""
+    }
+  }
+  

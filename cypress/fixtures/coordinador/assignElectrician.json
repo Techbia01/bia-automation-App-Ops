@@ -1,0 +1,24 @@
+{
+  "testData": {
+    "estadoPorAsignarElectricista": "Por asignar electricista",
+    "mensajeExito": "Se ha asignado electricista a la OT:",
+    "tituloModal": "Asignar electricistas",
+    "botonConfirmar": "Asignar electricistas",
+    "botonCancelar": "Cancelar",
+    "electricista": "YESIKA"
+  },
+
+  "timeouts": {
+    "cargaPagina": 2000,
+    "aplicacionFiltro": 3000,
+    "aperturaModal": 2000,
+    "procesamientoBusqueda": 2000,
+    "seleccionElectricista": 1000,
+    "procesamientoAsignacion": 3000
+  },
+  "urls": {
+    "home": "/home",
+    "adminOts": "/admin/ots",
+    "visits": "/visits"
+  }
+}

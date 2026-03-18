@@ -1,0 +1,29 @@
+{
+  "titulos": [
+    "Información General",
+    "Transformadores encontrados",
+    "Medidor encontrado",
+    "Medidor principal instalado",
+    "Medidor de respaldo instalado",
+    "Telemedida encontrada",
+    "Telemedida instalada",
+    "Totalizador encontrado",
+    "Totalizador instalado",
+    "Cables de potencia encontrados",
+    "Cables de potencia instalados",
+    "TCs encontrados",
+    "TCs Instalados",
+    "TPs encontrados",
+    "TPs Instalados",
+    "Bloque de pruebas encontrado",
+    "Bloque de pruebas instalado",
+    "Cable de control encontrado",
+    "Cable de control instalado",
+    "Planta de respaldo",
+    "Pruebas de funcionamiento",
+    "Datos equipo patrón",
+    "Diagrama unifilar",
+    "Descripción y observaciones",
+    "Autorización y firmas"
+  ]
+}

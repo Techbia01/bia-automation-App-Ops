@@ -1,0 +1,20 @@
+{
+  "testData": {
+    "tituloModal": "Descargar archivo csv",
+    "descripcionModal": "Elige las órdenes de trabajo a exportar",
+    "labelEstadoOT": "Estado de la OT",
+    "labelTipoOT": "Tipo de OT",
+    "labelFechaEjecucion": "Fecha de ejecución",
+    "mensajeDescargaExitosa": "Se ha descargado el archivo correctamente. Revisa en tus descargas.",
+    "botonDescargar": "Descargar",
+    "botonCancelar": "Cancelar",
+    "estadoOTDefault": "Todos los estados",
+    "tipoOTDefault": "Todos los tipos"
+  },
+  "timeouts": {
+    "cargaPagina": 2000,
+    "aperturaModal": 2000,
+    "seleccionFecha": 1000,
+    "descarga": 5000
+  }
+}

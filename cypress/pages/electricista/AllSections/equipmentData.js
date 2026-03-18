@@ -1,0 +1,1 @@
+// Seccion de Datos equipos patron

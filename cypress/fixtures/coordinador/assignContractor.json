@@ -1,0 +1,25 @@
+{
+  "testData": {
+    "estadoPorAsignarContratista": "Por asignar contratista",
+    "mensajeExito": "Se ha asignado contratista a la OT:",
+    "tituloModal": "Asignar contratista",
+    "botonConfirmar": "Asignar contratista",
+    "botonCancelar": "Cancelar",
+    "contratistaFlujo1": "JONATHAN",
+    "contratistaFlujo2": "3 POTRILLOS"
+  },
+
+  "timeouts": {
+    "cargaPagina": 2000,
+    "aplicacionFiltro": 3000,
+    "aperturaModal": 2000,
+    "procesamientoBusqueda": 2000,
+    "seleccionContratista": 1000,
+    "procesamientoAsignacion": 3000
+  },
+  "urls": {
+    "home": "/home",
+    "adminOts": "/admin/ots",
+    "visits": "/visits"
+  }
+}

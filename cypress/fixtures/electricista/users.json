@@ -1,0 +1,22 @@
+{
+  "coordinator": {
+    "email": "test.bia.coordinador@yopmail.com",
+    "password": "aguacate"
+  },
+  "contractor": {
+    "email": "test.bia.contratista@yopmail.com",
+    "password": "aguacate"
+  },
+  "electrician": {
+    "email": "yesika.vanegas@bia.app",
+    "password": "aguacate"
+  },
+  "invalid": {
+    "email": "fake@bia.app",
+    "password": "wrongpass"
+  },
+  "engineer": {
+    "email": "test.bia.ingregulatorio@yopmail.com",
+    "password": "aguacate"
+  }
+}

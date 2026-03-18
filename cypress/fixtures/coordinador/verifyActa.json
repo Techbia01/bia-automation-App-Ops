@@ -1,0 +1,20 @@
+{
+  "testData": {
+    "estadosConActa": ["Fallida", "Exitosa"],
+    "columnaEstadoOT": "Estado OT",
+    "columnaActa": "Acta",
+    "opcionReemplazar": "Reemplazar",
+    "opcionDescargarActa": "Descargar acta",
+    "opcionBorrarActa": "Borrar acta",
+    "mensajeDescargaRegex": "descarg"
+  },
+  "timeouts": {
+    "cargaPagina": 2000,
+    "aperturaActa": 3000,
+    "descarga": 10000
+  },
+  "indicesFallback": {
+    "estadoOT": 2,
+    "acta": -1
+  }
+}
