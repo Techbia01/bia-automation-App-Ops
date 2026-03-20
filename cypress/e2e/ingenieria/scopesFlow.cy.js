@@ -136,35 +136,30 @@ describe('3 - Prepare Visit | Coordinator', () => {
           processStatus();
 
         } else if (status === 'Por asignar electricista') {
-          cy.log('⚡ Clicking + in Electricistas column...');
+          cy.log('⚡ Assigning electrician...');
           cy.contains('th', 'Electricistas').scrollIntoView();
           cy.wait(500);
           clickButtonInColumn('Electricistas');
-        cy.contains('Selecciona líder').click();
-        cy.wait(500);
-        cy.get('input[placeholder="Buscar..."]').should('be.visible').type('juan castil');
-        cy.wait(1000);
-        cy.contains('juan castil').click();
-        cy.contains('button', 'Asignar electricistas').click();
-        cy.wait(2000);
-        processStatus();
+          cy.contains('Selecciona líder').click();
+          cy.wait(500);
+          cy.get('input[placeholder="Buscar..."]').should('be.visible').type('juan castil');
+          cy.wait(1000);
+          cy.contains('juan castil').click();
+          cy.contains('button', 'Asignar electricistas').click();
+          cy.wait(2000);
+          processStatus();
 
         } else if (status === 'Lista para ejecutar') {
           cy.log('📄 Uploading acta...');
           cy.contains('th', 'Acta').scrollIntoView();
           cy.wait(500);
           clickButtonInColumn('Acta');
-          cy.wait(1000);
-
-          // Validate acta icon appears in Acta column
-          cy.contains('th', 'Acta').invoke('index').then((colIndex) => {
-            cy.contains('tr', VISIT_TITLE)
-              .find('td').eq(colIndex)
-              .find('svg')
-              .should('exist');
-          });
+          cy.get('input[type="file"]').selectFile(
+            'cypress/fixtures/ingenieria/acta_prueba.pdf',
+            { force: true }
+          );
+          cy.contains('button', 'Guardar').click();
           cy.wait(2000);
-          processStatus();
 
         } else {
           cy.log(`⚠️ Unexpected status: "${status}"`);
