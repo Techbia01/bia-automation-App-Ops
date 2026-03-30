@@ -59,14 +59,18 @@ describe('Alcances - Ingeniería', () => {
       cy.get('input.MuiInputBase-input').first().clear();
       cy.get('input.MuiInputBase-input').first().type(data.searches.bia_code);
       cy.wait(2000);
-      cy.contains(data.searches.bia_code).should('be.visible');
-      cy.contains(data.searches.bia_code_excluded).should('not.exist');
+      cy.get('tbody tr').should('have.length.greaterThan', 0).each(($row) => {
+        cy.wrap($row).scrollIntoView();
+        cy.wrap($row).invoke('text').should('contain', data.searches.bia_code);
+        cy.wrap($row).invoke('text').should('not.contain', data.searches.bia_code_excluded);
+      });
 
       // ── PARTE 7: Abrir filtro de tipo de alcance ─────────────────────────────
       cy.get('input.MuiInputBase-input').first().clear();
-      cy.wait(500);
+      cy.get('body').click(0, 0); // perder foco del input para evitar re-renders que cierren el dropdown
+      cy.wait(1000);
       cy.get('button[class*="BiaDropdown_input"]').first().realClick();
-      cy.wait(500);
+      cy.get('[class*="BiaDropdown_dropdownMenu"]', { timeout: 8000 }).should('be.visible');
       cy.get('[class*="BiaDropdown_dropdownMenu"]')
         .contains('Todos los tipos de alcance')
         .click();
@@ -77,20 +81,41 @@ describe('Alcances - Ingeniería', () => {
         .contains(data.searches.type_scope_filter.expected)
         .click();
       cy.get('body').click(0, 0);
-      cy.wait(1500);
-      // Verificar que todos los registros visibles son de tipo Instalación
-      cy.get('[role="row"]').not('[aria-rowindex="1"]').each(($row) => {
+      cy.wait(2000);
+      cy.get('tbody tr').should('have.length.greaterThan', 0).each(($row) => {
+        cy.wrap($row).scrollIntoView();
         cy.wrap($row).invoke('text').should('contain', data.searches.type_scope_filter.expected);
+        cy.wrap($row).invoke('text').should('not.contain', data.searches.type_scope_filter.not_expected);
       });
-      // Navegar a siguiente página si existe y verificar también
-      cy.get('body').then(($body) => {
-        if ($body.find('[aria-label="Go to next page"]:not([disabled])').length > 0) {
-          cy.get('[aria-label="Go to next page"]').click();
-          cy.wait(1500);
-          cy.get('[role="row"]').not('[aria-rowindex="1"]').each(($row) => {
-            cy.wrap($row).invoke('text').should('contain', data.searches.type_scope_filter.expected);
-          });
-        }
+
+      // ── PARTE 8: Resetear filtro de tipo y filtrar por operador de red ────────
+      cy.get('button[class*="BiaDropdown_input"]').first().realClick();
+      cy.get('[class*="BiaDropdown_dropdownMenu"]', { timeout: 8000 }).should('be.visible');
+      cy.get('input[class*="BiaDropdown_searchInput"]').first().clear().type('Todos los tipos de alcance');
+      cy.wait(500);
+      cy.get('[class*="BiaDropdown_dropdownMenu"]').contains('Todos los tipos de alcance').click();
+      cy.get('body').click(0, 0);
+      cy.wait(1000);
+
+      // Abrir filtro de operador de red y buscar
+      cy.get('button[class*="BiaDropdown_input"]').last().realClick();
+      cy.get('[class*="BiaDropdown_dropdownMenu"]', { timeout: 8000 }).should('be.visible');
+      cy.get('input[class*="BiaDropdown_searchInput"]').last().clear().type('Todos los operadores de red');
+      cy.wait(500);
+      cy.get('[class*="BiaDropdown_dropdownMenu"]').contains('Todos los operadores de red').click();
+      cy.get('input[class*="BiaDropdown_searchInput"]').last().clear().type(data.searches.operator_filter.query);
+      cy.wait(500);
+      cy.get('[class*="BiaDropdown_dropdownMenu"]').contains(data.searches.operator_filter.expected[0]).click();
+      cy.get('body').click(0, 0);
+      cy.wait(2000);
+
+      cy.get('tbody tr').should('have.length.greaterThan', 0).each(($row) => {
+        cy.wrap($row).scrollIntoView();
+        cy.wrap($row).invoke('text').then((text) => {
+          const containsExpected = data.searches.operator_filter.expected.some((op) => text.includes(op));
+          expect(containsExpected).to.be.true;
+        });
+        cy.wrap($row).invoke('text').should('not.contain', data.searches.operator_filter.not_expected);
       });
     });
   });

@@ -100,8 +100,8 @@
       "not_expected": "Normalización"
     },
     "operator_filter": {
-      "query": "enel",
-      "expected": ["ENEL", "ENEL CUNDINAMARCA", "ENEL E", "ENEL ES-01"],
+      "query": "enel cundinamarca",
+      "expected": ["ENEL CUNDINAMARCA", "ENEL", "ENEL E", "ENEL ES-01"],
       "not_expected": "AFINIA"
     }
   }
