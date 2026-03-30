@@ -143,7 +143,6 @@ describe('Alcances - Ingeniería', () => {
     cy.url().should('match', /\/dashboard\/scopes\/.+/);
     cy.wait(3000);
 
-  
 
     // Abrir sección Información general
     cy.contains('INFORMACIÓN GENERAL').should('be.visible').click();
@@ -168,6 +167,61 @@ describe('Alcances - Ingeniería', () => {
       'MEDIDOR ENCONTRADO',
       'TOTALIZADOR',
       'CABLEADO',
+      'INFORMACIÓN DE PLANTA',
+      'MANIOBRA',
+      'MEDIDA A INSTALAR Y CELDA',
+      'ANTENA Y RED CELULAR',
+      'FACTOR DE MEDIDA A INSTALAR',
+      'OBSERVACIONES E INFORMACIÓN COMPLEMENTARIA',
+    ];
+    secciones.forEach((seccion) => {
+      cy.contains(seccion).should('be.visible');
+    });
+  });
+
+  it.only('FLUJO 3: Seleccionar tipo de medida Semidirecta y verificar secciones', () => {
+    // Clic en tab Definición de alcance
+    cy.contains('Definición de alcance').click();
+    cy.contains('Definición de alcance').should('have.class', 'Mui-selected');
+    cy.wait(3000);
+
+    // Buscar por código BIA
+    cy.get('input.MuiInputBase-input').first().clear().type('CO0500003757');
+    cy.wait(2000);
+
+    // Clic en el registro encontrado
+    cy.get('tbody tr').first().scrollIntoView().click();
+
+    // Verificar que navegó al detalle del registro
+    cy.url().should('match', /\/dashboard\/scopes\/.+/);
+    cy.wait(3000);
+
+    // Abrir sección Información general
+    cy.contains('INFORMACIÓN GENERAL').should('be.visible').click();
+    cy.wait(1000);
+
+    // Pulsar el botón de "Tipo de medida encontrada" para abrir dropdown
+    cy.contains('Tipo de medida encontrada').closest('[class*="BiaDropdown_dropdownContainer"]').find('button').click();
+    cy.wait(500);
+
+    // Seleccionar opción Semidirecta
+    cy.contains('Semidirecta').click();
+    cy.wait(500);
+
+    // Cerrar sección Información general
+    cy.contains('INFORMACIÓN GENERAL').click();
+
+    // Verificar que todas las secciones estén visibles
+    const secciones = [
+      'DOCUMENTOS',
+      'INFORMACIÓN GENERAL',
+      'INFORMACIÓN DEL TRANSFORMADOR',
+      'MEDIDOR ENCONTRADO',
+      'TOTALIZADOR',
+      'CABLEADO',
+      'CABLEADO CONTROL',
+      'BLOQUE DE PRUEBAS',
+      'TRANSFORMADORES DE CORRIENTE',
       'INFORMACIÓN DE PLANTA',
       'MANIOBRA',
       'MEDIDA A INSTALAR Y CELDA',
