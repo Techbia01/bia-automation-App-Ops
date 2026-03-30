@@ -120,4 +120,64 @@ describe('Alcances - Ingeniería', () => {
     });
   });
 
+  it('FLUJO 2: Navegar a un registro desde el tab Definición de alcance', () => {
+    // Clic en tab Definición de alcance
+    cy.contains('Definición de alcance').click();
+    cy.contains('Definición de alcance').should('have.class', 'Mui-selected');
+    cy.wait(3000);
+
+    // DEBUG: loguear tag y placeholder del input de búsqueda
+    cy.get('input').first().then(($input) => {
+      cy.log('Tag: ' + $input.prop('tagName'));
+      cy.log('Placeholder: ' + $input.attr('placeholder'));
+    });
+
+    // Buscar por código BIA
+    cy.get('input.MuiInputBase-input').first().clear().type('CO0500003757');
+    cy.wait(2000);
+
+    // Clic en el registro encontrado
+    cy.get('tbody tr').first().scrollIntoView().click();
+
+    // Verificar que navegó al detalle del registro (URL tiene algo después de /scopes/)
+    cy.url().should('match', /\/dashboard\/scopes\/.+/);
+    cy.wait(3000);
+
+  
+
+    // Abrir sección Información general
+    cy.contains('INFORMACIÓN GENERAL').should('be.visible').click();
+    cy.wait(1000);
+
+    // Pulsar el botón debajo de "Tipo de medida encontrada" para abrir dropdown
+    cy.contains('Tipo de medida encontrada').closest('[class*="BiaDropdown_dropdownContainer"]').find('button').click();
+    cy.wait(500);
+
+    // Seleccionar opción Directa
+    cy.contains('Directa').click();
+    cy.wait(500);
+
+    // Volver a pulsar Información general
+    cy.contains('INFORMACIÓN GENERAL').click();
+
+    // Verificar que todas las secciones estén visibles
+    const secciones = [
+      'DOCUMENTOS',
+      'INFORMACIÓN GENERAL',
+      'INFORMACIÓN DEL TRANSFORMADOR',
+      'MEDIDOR ENCONTRADO',
+      'TOTALIZADOR',
+      'CABLEADO',
+      'INFORMACIÓN DE PLANTA',
+      'MANIOBRA',
+      'MEDIDA A INSTALAR Y CELDA',
+      'ANTENA Y RED CELULAR',
+      'FACTOR DE MEDIDA A INSTALAR',
+      'OBSERVACIONES E INFORMACIÓN COMPLEMENTARIA',
+    ];
+    secciones.forEach((seccion) => {
+      cy.contains(seccion).should('be.visible');
+    });
+  });
+
 });
