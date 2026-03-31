@@ -4,6 +4,15 @@ const loginPage = new LoginPage();
 
 // ── Helpers reutilizables ────────────────────────────────────────────────────
 
+const verificarDropdownObligatorio = (label, opciones) => {
+  cy.contains(label).parent().invoke('text').should('include', '*');
+  cy.contains(label).closest('[class*="BiaDropdown_dropdownContainer"]').find('button').click();
+  cy.wait(500);
+  opciones.forEach((opcion) => cy.contains(opcion).should('exist'));
+  cy.get('body').click(0, 0);
+  cy.wait(500);
+};
+
 const navegarARegistro = (biaCodigo) => {
   cy.contains('Definición de alcance').click();
   cy.contains('Definición de alcance').should('have.class', 'Mui-selected');
@@ -253,6 +262,68 @@ describe('Alcances - Ingeniería', () => {
 
     seleccionarTipoMedida('Indirecta');
     validarDocumentos();
+  });
+
+  it.only('FLUJO 6: Validar campos de la sección INFORMACIÓN GENERAL', () => {
+    navegarARegistro('CO0500003757');
+
+    cy.contains('INFORMACIÓN GENERAL').should('be.visible').click();
+    cy.wait(1000);
+
+    // ── Tipo de medida encontrada ─────────────────────────────────────────────
+    verificarDropdownObligatorio('Tipo de medida encontrada', [
+      'Directa',
+      'Semidirecta',
+      'Indirecta',
+    ]);
+
+    // ── Ubicación de la medida ────────────────────────────────────────────────
+    verificarDropdownObligatorio('Ubicación de la medida', [
+      'Interior en subestación',
+      'Interior en gabinete propio',
+      'Interior en gabinete compartido',
+      'Exterior en fachada en gabinete propio',
+      'Exterior en fachada en gabinete compartido',
+      'Exterior en fachada sin gabinete',
+      'Exterior en poste con gabinete',
+      'Exterior en poste sin gabinete',
+      'Sótano en gabinete propio',
+      'Sótano en gabinete compartido',
+      'Sótano subestación',
+      'No se logra identificar',
+    ]);
+
+    // ── Factor de medida encontrado (input numérico obligatorio) ──────────────
+    cy.contains('Factor de medida encontrado').parent().invoke('text').should('include', '*');
+    cy.contains('Factor de medida encontrado').parent().find('input').as('factorInput');
+    // Solo acepta enteros: letras no deben quedar en el valor
+    cy.get('@factorInput').clear().type('abc').invoke('val').should('not.match', /[a-zA-Z]/);
+    // Decimales no deben ser aceptados
+    cy.get('@factorInput').clear().type('1.5').invoke('val').should('not.include', '.');
+    // Números enteros sí deben aceptarse
+    cy.get('@factorInput').clear().type('3567').should('have.value', '3567');
+
+    // ── Número de fases del usuario ───────────────────────────────────────────
+    verificarDropdownObligatorio('Número de fases del usuario', ['1', '2', '3']);
+
+    // ── Tensión nominal sistema (V) ───────────────────────────────────────────
+    verificarDropdownObligatorio('Tensión nominal sistema (V)', [
+      '120',
+      '208',
+      '220',
+      '240',
+      '440',
+    ]);
+
+    // ── Nivel de tensión ──────────────────────────────────────────────────────
+    verificarDropdownObligatorio('Nivel de tensión', ['1', '2', '3', '4']);
+
+    // ── Red de media tensión (V) ──────────────────────────────────────────────
+    verificarDropdownObligatorio('Red de media tensión (V)', [
+      '11400',
+      '13200',
+      '34500',
+    ]);
   });
 
 });
