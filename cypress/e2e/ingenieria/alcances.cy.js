@@ -264,7 +264,7 @@ describe('Alcances - Ingeniería', () => {
     validarDocumentos();
   });
 
-  it.only('FLUJO 6: Validar campos de la sección INFORMACIÓN GENERAL', () => {
+  it ('FLUJO 6: Validar campos de la sección INFORMACIÓN GENERAL', () => {
     navegarARegistro('CO0500003757');
 
     cy.contains('INFORMACIÓN GENERAL').should('be.visible').click();
